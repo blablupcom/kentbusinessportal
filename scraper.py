@@ -236,7 +236,7 @@ if __name__ == '__main__':
 
                 attach_list = []
                 attach_list = get_attachments(tender_soup)
-                scraperwiki.sqlite.save(unique_keys=['l'], data={"l": unicode(link).encode('ascii', 'ignore'), "tender_id": unicode(tender_id).encode('ascii', 'ignore'), "buyer": unicode(buyer).encode('ascii', 'ignore'), "title" : unicode(title).encode('ascii', 'ignore'), "categories": unicode(categories).encode('ascii', 'ignore'),  "d": todays_date.encode('ascii', 'ignore')})
+                scraperwiki.sqlite.save(unique_keys=['l'], data={"l": unicode(link).encode('ascii', 'ignore').decode('ascii', 'ignore'), "tender_id": unicode(tender_id).encode('ascii', 'ignore').decode('ascii', 'ignore'), "buyer": unicode(buyer).encode('ascii', 'ignore').decode('ascii', 'ignore'), "title" : unicode(title).encode('ascii', 'ignore').decode('ascii', 'ignore'), "categories": unicode(categories).encode('ascii', 'ignore').decode('ascii', 'ignore'),  "d": todays_date.encode('ascii', 'ignore').decode('ascii', 'ignore')})
                 # "contact_name": unicode(contact_name), "contact_phone": contact_phone,  "contact_addr": contact_addr.decode('utf-8'),  "contract_start": contract_start, "contract_end": contract_end, "eoi_start": eoi_start, "eoi_end": eoi_end, "est_value": est_value, "contract_duration": contract_duration.decode('utf-8'),"extension_duration": extension_duration.decode('utf-8'), "extension_iterations": extension_iterations.decode('utf-8'), "attach_list": unicode(attach_list),
                 # "contact_email": unicode(contact_email),
                 # "summary": summary.decode('utf-8')
