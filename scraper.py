@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import sys
+reload(sys)  # Reload does the trick!
+sys.setdefaultencoding('UTF8')
 from __future__ import unicode_literals
 import scraperwiki
 from datetime import datetime
@@ -41,7 +44,7 @@ def get_tender_id (tender_soup):
                 tender_id = tender_id[len('Contract '):]
 
             print tender_id
-            tender_id = tender_id
+            tender_id = tender_id.encode('utf-8')
             tender_id = tender_id.strip()
     return tender_id
 
@@ -236,7 +239,7 @@ if __name__ == '__main__':
 
                 attach_list = []
                 attach_list = get_attachments(tender_soup)
-                scraperwiki.sqlite.save(unique_keys=['l'], data={"l":link.encode('ascii', 'ignore').decode('utf-8', 'ignore'), "tender_id": tender_id.encode('ascii', 'ignore').decode('utf-8', 'ignore'), "buyer": unicode(buyer).encode('ascii', 'ignore').decode('utf-8', 'ignore'), "title" : unicode(title).encode('ascii', 'ignore').decode('utf-8', 'ignore'), "categories": unicode(categories).encode('ascii', 'ignore').decode('utf-8', 'ignore'),  "d": todays_date.encode('ascii', 'ignore').decode('utf-8', 'ignore')})
+                scraperwiki.sqlite.save(unique_keys=['l'], data={"l":link.encode('ascii', 'ignore').decode('utf-8', 'ignore'), "tender_id": str(tender_id).encode('ascii', 'ignore').decode('utf-8', 'ignore'), "buyer": unicode(buyer).encode('ascii', 'ignore').decode('utf-8', 'ignore'), "title" : unicode(title).encode('ascii', 'ignore').decode('utf-8', 'ignore'), "categories": unicode(categories).encode('ascii', 'ignore').decode('utf-8', 'ignore'),  "d": todays_date.encode('ascii', 'ignore').decode('utf-8', 'ignore')})
                 # "contact_name": unicode(contact_name), "contact_phone": contact_phone,  "contact_addr": contact_addr.decode('utf-8'),  "contract_start": contract_start, "contract_end": contract_end, "eoi_start": eoi_start, "eoi_end": eoi_end, "est_value": est_value, "contract_duration": contract_duration.decode('utf-8'),"extension_duration": extension_duration.decode('utf-8'), "extension_iterations": extension_iterations.decode('utf-8'), "attach_list": unicode(attach_list),
                 # "contact_email": unicode(contact_email),
                 # "summary": summary.decode('utf-8')
