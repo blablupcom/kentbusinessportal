@@ -185,10 +185,10 @@ if __name__ == '__main__':
     ]
 
 
-    df = read_csv("dn16b.csv") # use pandas to open csv
-    saved_urls = df['tender_url'].values.tolist() # convert column to list
+    #df = read_csv("dn16b.csv") # use pandas to open csv
+    #saved_urls = df['tender_url'].values.tolist() # convert column to list
 
-    resultFile = open("dn16b.csv",'a')
+    #resultFile = open("dn16b.csv",'a')
 
 
     for portal in portals:
@@ -234,11 +234,11 @@ if __name__ == '__main__':
 
                 attach_list = []
                 attach_list = get_attachments(tender_soup)
+                scraperwiki.sqlite.save(unique_keys=['l'], data={"l": str(link), "tender_id": str(tender_id), "buyer": str(buyer)})
+                #csv_row = [link, tender_id,buyer,title,summary,categories,contact_name,contact_phone,contact_email,contact_addr,contract_start,contract_end,eoi_start,eoi_end,est_value,contract_duration,extension_duration,extension_iterations,attach_list]
 
-                csv_row = [link, tender_id,buyer,title,summary,categories,contact_name,contact_phone,contact_email,contact_addr,contract_start,contract_end,eoi_start,eoi_end,est_value,contract_duration,extension_duration,extension_iterations,attach_list]
-
-                wr = csv.writer(resultFile, quoting=csv.QUOTE_ALL, delimiter=',')
-                wr.writerow(csv_row)
+                #wr = csv.writer(resultFile, quoting=csv.QUOTE_ALL, delimiter=',')
+                #wr.writerow(csv_row)
 
 
 
