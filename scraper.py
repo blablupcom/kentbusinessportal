@@ -41,7 +41,7 @@ def get_tender_id (tender_soup):
                 tender_id = tender_id[len('Contract '):]
 
             print tender_id
-            tender_id = tender_id.encode('utf-8')
+            tender_id = tender_id
             tender_id = tender_id.strip()
     return tender_id
 
