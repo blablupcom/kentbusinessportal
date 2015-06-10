@@ -1,12 +1,13 @@
  # -*- coding: utf-8 -*-
+import scraperwiki
 from datetime import datetime
 import urllib
 #import BeautifulSoup
 from bs4 import BeautifulSoup
 from bs4 import NavigableString
-import csv
+#import csv
 import time
-from pandas import read_csv
+#from pandas import read_csv
 import scraperwiki
 
 def get_links_list (source_url):
@@ -185,10 +186,10 @@ if __name__ == '__main__':
     ]
 
 
-    df = read_csv("dn16b.csv") # use pandas to open csv
-    saved_urls = df['tender_url'].values.tolist() # convert column to list
-
-    resultFile = open("dn16b.csv",'a')
+    # df = read_csv("dn16b.csv") # use pandas to open csv
+    # saved_urls = df['tender_url'].values.tolist() # convert column to list
+    #
+    # resultFile = open("dn16b.csv",'a')
 
 
     for portal in portals:
@@ -234,12 +235,13 @@ if __name__ == '__main__':
 
                 attach_list = []
                 attach_list = get_attachments(tender_soup)
-
-                csv_row = [link, tender_id,buyer,title,summary,categories,contact_name,contact_phone,contact_email,contact_addr,contract_start,contract_end,eoi_start,eoi_end,est_value,contract_duration,extension_duration,extension_iterations,attach_list]
-
-                wr = csv.writer(resultFile, quoting=csv.QUOTE_ALL, delimiter=',')
-                wr.writerow(csv_row)
-
+                scraperwiki.sqlite.save(unique_keys=['l'], data={"l": unicode(link), "tender_id": unicode(tender_id), "buyer": unicode(buyer), "title" : unicode(title), "summary": summary.decode('utf-8'), "categories": unicode(categories), "contact_name": unicode(contact_name),
+                                                                 "contact_phone": contact_phone, "contact_email": contact_email, "contact_addr": contact_addr, "contract_start": contract_start, "contract_end": contract_end, "eoi_start": eoi_start, "eoi_end": eoi_end, "est_value": est_value, "contract_duration": contract_duration,"extension_duration": extension_duration, "extension_iterations": extension_iterations, "attach_list": unicode(attach_list), "d": todays_date })
+                # csv_row = [link, tender_id,buyer,title,summary,categories,contact_name,contact_phone,contact_email,contact_addr,contract_start,contract_end,eoi_start,eoi_end,est_value,contract_duration,extension_duration,extension_iterations,attach_list]
+                #
+                # wr = csv.writer(resultFile, quoting=csv.QUOTE_ALL, delimiter=',')
+                # wr.writerow(csv_row)
+                #
 
 
                 # add other fields
