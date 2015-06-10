@@ -2,7 +2,6 @@
 import sys
 reload(sys)  # Reload does the trick!
 sys.setdefaultencoding('UTF8')
-from __future__ import unicode_literals
 import scraperwiki
 from datetime import datetime
 import urllib
